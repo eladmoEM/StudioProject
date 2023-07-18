@@ -4,14 +4,13 @@
       <ion-card-title>פרטי לקוח</ion-card-title>
     </ion-card-header>
     <br>
-    <ion-card-content>
+    <ion-card-content *ngIf="!editMode">
       <!-- Display the customer details here -->
       <p>Parent Names: <span>{{customer.parentNames}}</span></p>
-      <p>Phone Number: <span>{{customer.phoneNumber}}</span></p>
+      <p>Phone Number: <span>0{{customer.phoneNumber}}</span></p>
       <p>Username: <span>{{customer.username}}</span></p>
       <p>Password: <span>{{customer.password}}</span></p>
       <p>Email: <span>{{customer.email}}</span></p>
-      <p>Number of Children: <span>{{customer.numberOfChildren}}</span></p>
       <p>Child Name: <span>{{customer.childName}}</span></p>
       <p>Birth Date: <span>{{customer.birthdate | date}}</span></p> <!-- Use Angular date pipe to format the date -->
       <p>Gender: <span>{{customer.gender}}</span></p>
@@ -20,13 +19,87 @@
       <p>Teacher: <span>{{customer.teacher}}</span></p>
       <p>Course ID: <span>{{customer.courseID}}</span></p>
     </ion-card-content>
-  </ion-card>
 
+    <ion-card-content *ngIf="editMode">
+      <!-- Editable form -->
 
-  <div class="flex-center">
-    <ion-button color="danger">מחק לקוח</ion-button>
-    <ion-button color="success">ערוך לקוח</ion-button>
-  </div>
-  <br>
-  <ion-button size="full" (click)="closeModal()">סגירה</ion-button>
-</ion-content>
+      <ion-item>
+        <ion-label dir="rtl" slot="end">שמות ההורים:</ion-label>
+        <ion-input [(ngModel)]="customer.parentNames" type="text" dir="rtl"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label dir="rtl"  slot="end">מספר טלפון:</ion-label>
+        <ion-input [(ngModel)]="customer.phoneNumber" type="text" dir="rtl"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label dir="rtl" slot="end">שם משתמש:</ion-label>
+        <ion-input [(ngModel)]="customer.username" type="text" dir="rtl"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label dir="rtl" slot="end">סיסמה:</ion-label>
+        <ion-input [(ngModel)]="customer.password" type="password" dir="rtl"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label dir="rtl" slot="end">אימייל:</ion-label>
+        <ion-input [(ngModel)]="customer.email" type="email" dir="rtl"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label dir="rtl" slot="end">שם הילד:</ion-label>
+        <ion-input [(ngModel)]="customer.childName" type="text" dir="rtl"></ion-input>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label position="stacked">Birthdate</ion-label>
+        <ion-datetime [(ngModel)]="customer.birthdate" displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD"></ion-datetime>
+      </ion-item>
+      <br>
+      <ion-item>
+        <ion-label dir="rtl" slot="end">מין:</ion-label>
+        <ion-input [(ngModel)]="customer.gender" type="text" dir="rtl" disabled></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label dir="rtl" slot="end">סוג קורס: </ion-label>
+        <ion-select aria-label="Courses" interface="action-sheet" [(ngModel)]="customer.courseType" dir="rtl" placeholder="בחר קורס">
+          <ion-select-option value="בלט צעירים">בלט צעירים</ion-select-option>
+          <ion-select-option value="בלט בוגרים">בלט בוגרים</ion-select-option>
+          <ion-select-option value="היפופ צעירים">היפופ צעירים</ion-select-option>
+          <ion-select-option value="היפהופ בוגרים">היפהופ בוגרים</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      
+      <ion-item>
+        <ion-label dir="rtl" slot="end">ת.ז. של הילד:</ion-label>
+        <ion-input [(ngModel)]="customer.childID" type="text" disabled dir="rtl"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label dir="rtl" slot="end">מורה:</ion-label>
+        <ion-input [(ngModel)]="customer.teacher" type="text" dir="rtl"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label dir="rtl" slot="end">ת.ז. של הקורס:</ion-label>
+        <ion-input [(ngModel)]="customer.courseID" type="text" dir="rtl"></ion-input>
+      </ion-item>
+      
+      <ion-button color="success" size="full" (click)="saveChanges()">שמירה</ion-button>
+      <ion-button size="full" color="danger" (click)="confirmDelete()">מחק לקוח</ion-button>
+      
+      </ion-card-content>
+      
+      <div class="flex-center">
+        <ion-button color="success" (click)="toggleEditMode()" *ngIf="!editMode">ערוך לקוח</ion-button>
+      </div>
+      <br>
+      <ion-button size="full" (click)="closeModal()" *ngIf="!editMode">סגירה</ion-button>
+      </ion-card>
+      
+      </ion-content>
+      

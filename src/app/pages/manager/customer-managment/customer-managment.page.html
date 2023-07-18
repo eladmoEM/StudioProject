@@ -1,23 +1,18 @@
+<ion-searchbar show-clear-button="focus" [(ngModel)]="searchTerm" (ionInput)="filterCustomers()"></ion-searchbar>
 <ion-content class="ion-padding">
+  <br>
   <div class="image-container">
     <ion-img id="logo" src="https://i.ibb.co/XX7BV00/removebg-preview.png" alt="Logo"></ion-img>
   </div>
   <ion-card-title>ניהול לקוחות</ion-card-title>
 
-  <ion-searchbar show-clear-button="focus" [(ngModel)]="searchTerm" (ionInput)="filterCustomers()"></ion-searchbar>
-  <!-- Iterating through the customers list -->
-  <div *ngFor="let customer of filteredCustomers">
-    <ion-card (click)="openModal(customer)">
-      <ion-card-header>
-        <ion-card-title> {{customer.childName}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Parents Names: {{customer.parentNames}}</p>
-        <p>Phone Number: {{customer.phoneNumber}}</p>
-        <p>Child Name: {{customer.childName}}</p>
-        <p>Course Type: {{customer.courseType}}</p>
-        <p>Teacher: {{customer.teacher}}</p>
-      </ion-card-content>
-    </ion-card>
-  </div>
+  
+    <div *ngFor="let customer of filteredCustomers">
+      <ion-card (click)="openModal(customer)">
+        <ion-card-header>
+          <ion-card-title> {{customer.childName}}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </div>
+  
 </ion-content>

@@ -86,6 +86,98 @@ app.get('/api/customers', (req, res) => {
   });
 });
 
+
+app.post('/api/customers/:phoneNumber', (req, res) => {
+  const phoneNumber = req.params.phoneNumber;
+  const updatedCustomerData = req.body; // Contains the updated customer details
+
+  // Perform the necessary database update operation using the received data
+  const registerSql = 'UPDATE register SET parentNames = ?, phoneNumber = ?, username = ?, password = ?, email = ?, numberOfChildren = ? WHERE phoneNumber = ?';
+  const registerValues = [
+    updatedCustomerData.parentNames,
+    updatedCustomerData.phoneNumber,
+    updatedCustomerData.username,
+    updatedCustomerData.password,
+    updatedCustomerData.email,
+    updatedCustomerData.numberOfChildren,
+    phoneNumber
+  ];
+
+  const childrenSql = 'UPDATE children SET childName = ?, birthdate = ?, courseType = ? WHERE phoneNumber = ? AND childID = ?'; // Include childID in the WHERE clause
+  const childrenValues = [
+    updatedCustomerData.childName,
+    updatedCustomerData.birthdate,
+    updatedCustomerData.courseType,
+    updatedCustomerData.phoneNumber,
+    updatedCustomerData.childID // Add the childID to the values array
+  ];
+
+  connection.query(registerSql, registerValues, (registerError, registerResult) => {
+    if (registerError) {
+      console.error(registerError);
+      res.status(500).json({ message: 'Error updating customer details' });
+    } else {
+      connection.query(childrenSql, childrenValues, (childrenError, childrenResult) => {
+        if (childrenError) {
+          console.error(childrenError);
+          res.status(500).json({ message: 'Error updating children details' });
+        } else {
+          res.json({ message: 'Customer details updated successfully!' });
+        }
+      });
+    }
+  });
+});
+
+
+
+app.delete('/api/customers/:phoneNumber/:childID', (req, res) => {
+  const phoneNumber = req.params.phoneNumber;
+  const childID = req.params.childID;
+
+  const deleteChildSql = 'DELETE FROM children WHERE phoneNumber = ? AND childID = ?';
+  const deleteParentSql = 'DELETE FROM register WHERE phoneNumber = ?';
+
+  connection.query(deleteChildSql, [phoneNumber, childID], (childError, childResult) => {
+    if (childError) {
+      console.error(childError);
+      res.status(500).json({ message: 'Error deleting child details' });
+    } else {
+      console.log(childResult);
+
+      // Check if the parent has any remaining children
+      const remainingChildrenSql = 'SELECT COUNT(*) AS childCount FROM children WHERE phoneNumber = ?';
+      connection.query(remainingChildrenSql, [phoneNumber], (remainingChildrenError, remainingChildrenResult) => {
+        if (remainingChildrenError) {
+          console.error(remainingChildrenError);
+          res.status(500).json({ message: 'Error checking remaining children' });
+        } else {
+          const childCount = remainingChildrenResult[0].childCount;
+          if (childCount === 0) {
+            // If no remaining children, delete the parent as well
+            connection.query(deleteParentSql, [phoneNumber], (parentError, parentResult) => {
+              if (parentError) {
+                console.error(parentError);
+                res.status(500).json({ message: 'Error deleting parent details' });
+              } else {
+                console.log(parentResult);
+                res.json({ message: 'Child and parent deleted successfully!' });
+              }
+            });
+          } else {
+            res.json({ message: 'Child deleted successfully!' });
+          }
+        }
+      });
+    }
+  });
+});
+
+
+
+
+
+
 connection.connect((err) => {
   if (err) {
     console.error('Error connecting to database: ' + err.stack);

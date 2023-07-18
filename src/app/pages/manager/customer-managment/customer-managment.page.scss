@@ -6,21 +6,39 @@ ion-content {
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
-.container {
-  text-align: center;
-}
 
 ion-card-title {
-  font-size: 28px;
+  font-size: 20px;
   color: black;
   text-align: center;
   font-family: 'Roboto Thin', sans-serif;
   font-weight: normal;
   font-style: italic;
+  margin-top: 10%;
+  
+  
+}
+ion-searchbar {
+  position: fixed;
+  right: 1%;
+  z-index: 9999; /* Adjust the value as needed */
 }
 
-ion-searchbar {
-  padding: 5%;
+ion-card-header {
+  height: 10px;
+  width: -20%;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-card-title{
+  margin: 0;
+  justify-content: center;
+  text-align: center;
 }
