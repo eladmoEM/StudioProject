@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CustomerDetailsComponentPage } from './customer-details.component/customer-details.component.page';
 import { CustomerService } from '../../../services/customer.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-managment',
@@ -16,11 +16,17 @@ export class CustomerManagmentPage implements OnInit {
 
   constructor(
     public modalController: ModalController,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private router: Router
   ) {}
+
 
   ngOnInit() {
     this.fetchCustomers();
+  }
+
+  goBack(){
+    this.router.navigateByUrl('/manager');
   }
 
   fetchCustomers() {

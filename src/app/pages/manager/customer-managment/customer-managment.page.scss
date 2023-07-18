@@ -1,44 +1,56 @@
-ion-content {
-  --ion-background-color: white;
-}
 
 .image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+ 
 }
 
+.back-icon {
+  font-size: 24px;
+}
 
-ion-card-title {
-  font-size: 20px;
-  color: black;
+.page-title {
+  font-size: 28px;
+  font-weight: bold;
   text-align: center;
-  font-family: 'Roboto Thin', sans-serif;
-  font-weight: normal;
-  font-style: italic;
-  margin-top: 10%;
-  
-  
+  margin: 20px 0;
 }
-ion-searchbar {
-  position: fixed;
-  right: 1%;
-  z-index: 9999; /* Adjust the value as needed */
+
+.searchbar-container {
+  padding: 0 16px;
+}
+
+.custom-searchbar {
+  --background: #fff;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.customer-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+ion-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 ion-card-header {
-  height: 10px;
-  width: -20%;
-  font-size: 14px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 60px;
 }
 
-ion-card-title{
-  margin: 0;
-  justify-content: center;
+ion-card-title {
+  font-size: 16px;
+  font-weight: bold;
   text-align: center;
+  margin: 0;
 }

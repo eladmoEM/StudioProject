@@ -93,12 +93,15 @@
       <ion-button size="full" color="danger" (click)="confirmDelete()">מחק לקוח</ion-button>
       
       </ion-card-content>
-      
+      <br>  <br>
       <div class="flex-center">
-        <ion-button color="success" (click)="toggleEditMode()" *ngIf="!editMode">ערוך לקוח</ion-button>
+        <ion-button style="font-size: 18px;" color="success" (click)="toggleEditMode()" *ngIf="!editMode">ערוך לקוח</ion-button>
       </div>
-      <br>
-      <ion-button size="full" (click)="closeModal()" *ngIf="!editMode">סגירה</ion-button>
+      <br>  <br>
+      <div style="display: flex; justify-content: center;">
+        <ion-button style="width: 100%; font-size: 18px;"  size="large" (click)="closeModal()" *ngIf="!editMode">סגירה</ion-button>
+      </div>
+      
       </ion-card>
       
       </ion-content>

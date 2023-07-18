@@ -1,31 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="back-button">
+      <ion-button (click)="Logout()" fill="clear">
+        <ion-icon name="arrow-back-outline" class="back-icon"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title slot="end" class="header-title">מסך מנהל</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
 <ion-content class="ion-padding">
   <div class="image-container">
     <ion-img id="logo" src="https://i.ibb.co/XX7BV00/removebg-preview.png" alt="Logo"></ion-img>
   </div>
 
-
   <div class="flex-center">
+    <div class="rectangle rounded-rectangle" id="Customerbtn" (click)="NaviCustomer()">
+      <img src="https://icons.veryicon.com/png/o/miscellaneous/common-icons-10/customer-management-15.png" alt="Customer Icon">
+      <span class="button-text">ניהול לקוחות</span>
+    </div>
 
-    <div class="ion-activatable ripple-parent rectangle rounded-rectangle">
-        <ion-ripple-effect></ion-ripple-effect>
-        <span class="left-text">ניהול לקוחות</span>
-        <img src="https://icons.veryicon.com/png/o/miscellaneous/common-icons-10/customer-management-15.png" alt="Description of the image">
-      </div>
-
-      <div class="ion-activatable ripple-parent rectangle rounded-rectangle2">
-        <ion-ripple-effect></ion-ripple-effect>
-        <span class="left-text">עריכת קורסים</span>
-        <img src="https://icon-library.com/images/management-icon-png/management-icon-png-2.jpg" alt="Description of the image">
-      </div>
-  <div class="logout" id="logout">
-        <ion-ripple-effect></ion-ripple-effect>
-        <ion-icon name="log-out-outline"></ion-icon>
-        </div>
-
-
-
-
-
-</div>
-
+    <div class="rectangle rounded-rectangle">
+      <img src="https://icon-library.com/images/management-icon-png/management-icon-png-2.jpg" alt="Courses Icon">
+      <span class="button-text">עריכת קורסים</span>
+    </div>
+  </div>
+</ion-content>

@@ -33,7 +33,12 @@ export class LoginPage implements OnInit {
       phoneNumber: this.phoneNumber,
       password: this.password
     };
-
+  
+    if (formData.phoneNumber === 'Admin' && formData.password === 'admin') {
+      this.router.navigateByUrl('/manager');
+      return; // Exit the method early if the admin logs in
+    }
+  
     this.http.post('http://localhost:3000/api/login', formData).subscribe(
       (response) => {
         console.log(response);
@@ -41,8 +46,8 @@ export class LoginPage implements OnInit {
       },
       async (error) => {
         console.log(error);
-
-        // Show an error message, if login failed
+  
+        // Show an error message if login failed
         const alert = await this.alertController.create({
           header: 'שגיאה',
           message: 'מספר פלאפון או סיסמא אינם תקינים',
@@ -52,4 +57,5 @@ export class LoginPage implements OnInit {
       }
     );
   }
+  
 }

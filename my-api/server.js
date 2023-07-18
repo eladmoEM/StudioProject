@@ -103,13 +103,12 @@ app.post('/api/customers/:phoneNumber', (req, res) => {
     phoneNumber
   ];
 
-  const childrenSql = 'UPDATE children SET childName = ?, birthdate = ?, courseType = ? WHERE phoneNumber = ? AND childID = ?'; // Include childID in the WHERE clause
+  const childrenSql = 'UPDATE children SET childName = ?, birthdate = ?, courseType = ? WHERE phoneNumber = ?';
   const childrenValues = [
     updatedCustomerData.childName,
     updatedCustomerData.birthdate,
     updatedCustomerData.courseType,
-    updatedCustomerData.phoneNumber,
-    updatedCustomerData.childID // Add the childID to the values array
+    updatedCustomerData.phoneNumber
   ];
 
   connection.query(registerSql, registerValues, (registerError, registerResult) => {
