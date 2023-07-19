@@ -30,3 +30,13 @@
   align-items: center;
   justify-content: center;
 }
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-content {
+  --ion-background-color: white;
+}

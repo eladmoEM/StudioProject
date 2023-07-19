@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="back-button">
+      <ion-button (click)="goBack()" fill="clear">
+        <ion-icon name="arrow-back-outline" class="back-icon"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title slot="end" class="header-title">ניהול קורסים</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="image-container">
+    <ion-img
+      id="logo"
+      src="https://i.ibb.co/XX7BV00/removebg-preview.png"
+      alt="Logo"
+    ></ion-img>
+  </div>
+
+  <div class="course-list">
+    <ion-card *ngFor="let course of courses" class="course-card">
+      <ion-card-header>
+        <ion-card-title>{{ course.title }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </div>
+</ion-content>

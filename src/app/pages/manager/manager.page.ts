@@ -20,4 +20,8 @@ export class ManagerPage implements OnInit {
   NaviCustomer(){
     this.router.navigateByUrl('/manager/customer-managment');
   }
+  NaviCourse(){
+    this.router.navigateByUrl('/manager/course-managment');
+
+  }
 }
