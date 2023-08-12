@@ -16,66 +16,66 @@
     <ion-list>
       <ion-item>
         <ion-label slot="end">שמות ההורים</ion-label>
-        <ion-input type="text"[(ngModel)]="parentNames" name="parentNames" placeholder="הכנס שם משתמש" required></ion-input>
+        <ion-input type="text"[(ngModel)]="parentNames" name="parentNames" placeholder="הכניסו שמות ההורים" required></ion-input>
       </ion-item>
 
-      <br>
+      <br> <br>
       <ion-item>
         <ion-label slot="end">שם משתמש</ion-label>
-        <ion-input type="text" [(ngModel)]="username" name="username" placeholder="הכנס שם משתמש" required></ion-input>
+        <ion-input type="text" [(ngModel)]="username" name="username" placeholder="הכניסו שם משתמש" required></ion-input>
       </ion-item>
-      <br>
+      <br> <br>
 
       <ion-item>
         <ion-label slot="end">סיסמא</ion-label>
-        <ion-input type="password" [(ngModel)]="password" name="password" placeholder="הכנס סיסמא" required></ion-input>
+        <ion-input type="password" [(ngModel)]="password" name="password" placeholder="הכניסו סיסמא" required></ion-input>
       </ion-item>
-      <br>
+      <br> <br>
 
       <ion-item>
         <ion-label slot="end">תקינות סיסמא</ion-label>
-        <ion-input type="password" [(ngModel)]="cpassword" name="confirmPassword" placeholder="אמת סיסמא" required></ion-input>
+        <ion-input type="password" [(ngModel)]="cpassword" name="confirmPassword" placeholder="אמתו סיסמא" required></ion-input>
       </ion-item>
-      <br>
+      <br> <br>
 
       <ion-item>
         <ion-label slot="end">כתובת מייל</ion-label>
-        <ion-input type="email" [(ngModel)]="email" name="email" placeholder="הכנס כתובת מייל" required></ion-input>
+        <ion-input type="email" [(ngModel)]="email" name="email" placeholder="הכניסו כתובת מייל" required></ion-input>
       </ion-item>
-      <br>
+      <br> <br>
 
       <ion-item>
-        <ion-label slot="end">מספר פלאפון</ion-label>
-        <ion-input type="tel" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="הכנס מספר פלאפון" required></ion-input>
+        <ion-label slot="end">מספר טלפון</ion-label>
+        <ion-input type="tel" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="הכניסו מספר טלפון" required></ion-input>
       </ion-item>
-      <br>
+      <br> <br>
 
       <ion-item>
         <ion-label slot="end">מספר ילדים</ion-label>
-        <ion-input type="number" [(ngModel)]="numberOfChildren" (ionChange)="onNumberOfChildrenChange()" name="numberOfChildren" placeholder="הכנס מספר ילדים" required></ion-input>
+        <ion-input type="number" [(ngModel)]="numberOfChildren" (ionChange)="onNumberOfChildrenChange()" name="numberOfChildren" placeholder="הכניסו מספר ילדים" required></ion-input>
       </ion-item>
-      <br>
+      <br> <br>
       <div *ngFor="let child of children; let i=index">
         <div *ngIf="childinfo">
           <ion-list>
       
             <ion-item>
               <ion-label slot="end">שם הילד</ion-label>
-              <ion-input type="text" [(ngModel)]="child.childName" name="childName{{i}}" placeholder="הכנס את שם הילד" required></ion-input>
+              <ion-input type="text" [(ngModel)]="child.childName" name="childName{{i}}" placeholder="הכניסו את שם הילד" required></ion-input>
             </ion-item>
-            <br>
+            <br> <br>
             <ion-item>
-              <ion-label slot="end">תעודת זהות</ion-label>
-              <ion-input type="text" [(ngModel)]="child.childID" name="childID{{i}}" placeholder="הכנס תעודת זהות" required></ion-input>
+              <ion-label slot="end">תעודת זהות (ילד)</ion-label>
+              <ion-input type="text" [(ngModel)]="child.childID" name="childID{{i}}" placeholder="הכניסו תעודת זהות" required></ion-input>
             </ion-item>
-            <br>
+            <br> <br>
             <ion-item>
-              <ion-label slot="end">תאריך לידה (6-17)</ion-label>
+              <ion-label slot="end">תאריך לידה של הילד/ה (6-17)</ion-label>
               <ion-input type="date" [(ngModel)]="child.birthdate" name="birthdate{{i}}" required (ionChange)="ionChanger()"></ion-input>
             </ion-item>
-            <br>
+            <br> <br>
             <ion-item>
-              <ion-select slot="end" [(ngModel)]="child.gender" name="gender" aria-label="Gender" interface="action-sheet" placeholder="בחר מין" required>
+              <ion-select slot="end" [(ngModel)]="child.gender" name="gender" aria-label="Gender" interface="action-sheet" placeholder="בחרו מין" required>
                 <ion-select-option value="זכר">זכר</ion-select-option>
                 <ion-select-option value="נקבה">נקבה</ion-select-option>
               </ion-select>

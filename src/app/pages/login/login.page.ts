@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 @Component({
@@ -10,52 +10,52 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  phoneNumber: string = '';
+  email: string = '';
   password: string = '';
 
-  constructor(private router: Router, private http: HttpClient, private alertController: AlertController) { }
+  constructor(
+    private router: Router,
+    private alertController: AlertController,
+    private afAuth: AngularFireAuth
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   navigateToRegister() {
     this.router.navigateByUrl('/register');
   }
 
   forgotPassword() {
-    // Navigate to the 'forgot password' page
     this.router.navigateByUrl('/forgot-password');
   }
 
-
   async login() {
-    const formData = {
-      phoneNumber: this.phoneNumber,
-      password: this.password
-    };
-  
-    if (formData.phoneNumber === 'Admin' && formData.password === 'admin') {
+    // Check if the email and password are both 'Admin'
+    if (this.email.toLowerCase() === 'admin' && this.password === 'Admin') {
+      // Navigate to the manager page
       this.router.navigateByUrl('/manager');
-      return; // Exit the method early if the admin logs in
-    }
+    } else {
+      try {
+        const userCredential = await this.afAuth.signInWithEmailAndPassword(
+          this.email,
+          this.password
+        );
   
-    this.http.post('http://localhost:3000/api/login', formData).subscribe(
-      (response) => {
-        console.log(response);
+        // User has successfully logged in
+        console.log(userCredential);
         this.router.navigateByUrl('/home');
-      },
-      async (error) => {
+      } catch (error) {
         console.log(error);
   
         // Show an error message if login failed
         const alert = await this.alertController.create({
           header: 'שגיאה',
-          message: 'מספר פלאפון או סיסמא אינם תקינים',
-          buttons: ['אישור']
+          message: 'אימייל או סיסמה אינם תקינים',
+          buttons: ['אישור'],
         });
         await alert.present();
       }
-    );
+    }
   }
   
 }

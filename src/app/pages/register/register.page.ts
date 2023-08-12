@@ -6,6 +6,8 @@ import { NgForm } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { CheckboxCustomEvent } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 
 @Component({
   selector: 'app-register',
@@ -38,16 +40,13 @@ export class RegisterPage {
   isContinueButtonVisible = false;
   isContinueButtonNoNVisible = true;
   
-  
-
-  
-
   constructor(
     private router: Router,
     private http: HttpClient,
     private alertController: AlertController,
     private navCtrl: NavController,
     private modalController: ModalController,
+    private afAuth: AngularFireAuth
   ) {}
 
   ngOnInit() {
@@ -69,36 +68,20 @@ export class RegisterPage {
     this.modalController.dismiss();
   }
 
-
-
   async onClick() {
     
     if (this.registrationForm.valid) {
-      // The form is valid, so you can submit it to the server or do other actions
-    } else {
-      // The form is invalid, so display an error message to the user
-      const alert = await this.alertController.create({
-        header: 'שגיאה',
-        message: 'בבקשה מלא את כל הפרטים',
-        buttons: ['אישור']
-      });
-      await alert.present();
-      return;
-    }
-  
+      // Check if password and confirm password match
+      if (this.password !== this.cpassword) {
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: 'Passwords do not match.',
+          buttons: ['OK'],
+        });
+        await alert.present();
+        return;
+      }
 
-    // Check if password and confirm password match
-    if (this.password !== this.cpassword) {
-      const alert = await this.alertController.create({
-        header: 'שגיאה',
-        message: 'סיסמאות לא תואמות.',
-        buttons: ['אישור'],
-      });
-      await alert.present();
-      return;
-    }
-
- 
       const formData = {
         parentNames: this.parentNames,
         username: this.username,
@@ -120,34 +103,69 @@ export class RegisterPage {
         }))
       };
 
+      // Register user in Firebase
+      this.afAuth.createUserWithEmailAndPassword(this.email, this.password)
+        .then(user => {
+          // If registration is successful
+          // post for Database
+          this.http.post('http://localhost:3000/api/register', formData)
+            .subscribe((response: any) => {
+              const alert = this.alertController.create({
+                header: 'Success!',
+                message: 'User registered successfully!',
+                buttons: ['OK']
+              });
+              alert.then((res) => {
+                res.present();
+                this.router.navigate(['/payment']);
+              });
+            }, (error: any) => {
+              const alert = this.alertController.create({
+                header: 'Error',
+                message: 'An error occurred. Please try again later.',
+                buttons: ['OK']
+              });
+              alert.then((res) => {
+                res.present();
+              });
+            });
+        })
+        .catch(async error => {
+          // If registration fails
+          const alert = await this.alertController.create({
+            header: 'Error',
+            message: error.message,
+            buttons: ['OK'],
+          });
+          await alert.present();
+        });
       
- 
-  
-      //post for Database
-    this.http.post('http://localhost:3000/api/register', formData)
-      .subscribe((response: any) => {
-        console.log(response);
-        const alert = this.alertController.create({
-          header: 'Success!',
-          message: 'User registered successfully!',
-          buttons: ['OK']
-        });
-        alert.then((res) => {
-          res.present();
-          this.router.navigate(['/payment']);
-        });
-      }, (error: any) => {
-        console.log(error);
-        const alert = this.alertController.create({
-          header: 'Error',
-          message: 'An error occurred. Please try again later.',
-          buttons: ['OK']
-        });
-        alert.then((res) => {
-          res.present();
-        });
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Please fill out all details',
+        buttons: ['OK']
       });
-
+      await alert.present();
+      return;
+    }
+  
+    this.http.post('http://localhost:3000/api/register', FormData)
+    .subscribe((response: any) => {
+      console.log(response);
+      const alert = this.alertController.create({
+        header: 'Success!',
+        message: 'User registered successfully!',
+        buttons: ['OK']
+      });
+      alert.then((res) => {
+        res.present();
+        this.router.navigate(['/payment']);
+      });
+    }, (error: any) => {
+      console.log(error);
+    });
+  
   }
   
   //This method adding more details for each child
