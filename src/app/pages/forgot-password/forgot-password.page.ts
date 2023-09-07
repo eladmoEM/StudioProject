@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../forgot-password/auth.service';
 import { AlertController } from '@ionic/angular';
+=======
+import { Component, OnInit } from '@angular/core';
+>>>>>>> origin/master
 
 @Component({
   selector: 'app-forgot-password',
@@ -10,6 +14,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./forgot-password.page.scss'],
 })
 export class ForgotPasswordPage implements OnInit {
+<<<<<<< HEAD
   email = '';
 
   constructor(
@@ -17,10 +22,15 @@ export class ForgotPasswordPage implements OnInit {
     private authService: AuthService,
     private alertController: AlertController
   ) { }
+=======
+
+  constructor() { }
+>>>>>>> origin/master
 
   ngOnInit() {
   }
 
+<<<<<<< HEAD
   goBack() {
     this.router.navigateByUrl('/login');
   }
@@ -41,3 +51,6 @@ export class ForgotPasswordPage implements OnInit {
     }
   }
 }
+=======
+}
+>>>>>>> origin/master
