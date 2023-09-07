@@ -1,14 +1,5 @@
 {
   "name": "mydancingstudioproject",
-  "integrations": {
-<<<<<<< HEAD
-    "capacitor": {
-      "enabled": false
-    },
-    "cordova": {}
-=======
-    "capacitor": {}
->>>>>>> origin/master
-  },
+  "integrations": {},
   "type": "angular"
 }
