@@ -6,12 +6,9 @@ import { NgForm } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { CheckboxCustomEvent } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-<<<<<<< HEAD
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
-=======
->>>>>>> origin/master
 
 @Component({
   selector: 'app-register',
@@ -22,16 +19,9 @@ export class RegisterPage {
   @ViewChild('registrationForm', { static: false })
   registrationForm!: NgForm;
   parentNames: string = '';
-<<<<<<< HEAD
   email: string = '';
   password: string = '';
   cpassword: string = '';
-=======
-  username: string = '';
-  password: string = '';
-  cpassword: string = '';
-  email: string = '';
->>>>>>> origin/master
   phoneNumber: string = '';
   numberOfChildren: number = 0;
   children: any[] = [];
@@ -49,25 +39,16 @@ export class RegisterPage {
   presentingElement: Element | null = null;
   isContinueButtonVisible = false;
   isContinueButtonNoNVisible = true;
-<<<<<<< HEAD
   courses: any[] = [];
   totalSum: number = 0;
 
   
-=======
-  
-  
-
-  
-
->>>>>>> origin/master
   constructor(
     private router: Router,
     private http: HttpClient,
     private alertController: AlertController,
     private navCtrl: NavController,
     private modalController: ModalController,
-<<<<<<< HEAD
     private afAuth: AngularFireAuth
   ) {}
 
@@ -89,16 +70,6 @@ export class RegisterPage {
 
   goBack() {
     this.router.navigate(['/login', { totalSum: this.totalSum }]);
-=======
-  ) {}
-
-  ngOnInit() {
-    this.presentingElement = document.querySelector('.ion-page');
-  }
-
-  goToLoginPage() {
-    this.navCtrl.navigateForward('/login');
->>>>>>> origin/master
   }
 
   onTermsChanged(event: Event) {
@@ -112,33 +83,17 @@ export class RegisterPage {
     this.modalController.dismiss();
   }
 
-<<<<<<< HEAD
   async onClick() {
     if (!this.phoneNumber || !this.parentNames || !this.email || !this.password || !this.cpassword || !this.numberOfChildren) {
       const alert = await this.alertController.create({
         header: 'Error',
         message: 'Please fill all the required fields.',
         buttons: ['OK'],
-=======
-
-
-  async onClick() {
-    
-    if (this.registrationForm.valid) {
-      // The form is valid, so you can submit it to the server or do other actions
-    } else {
-      // The form is invalid, so display an error message to the user
-      const alert = await this.alertController.create({
-        header: 'שגיאה',
-        message: 'בבקשה מלא את כל הפרטים',
-        buttons: ['אישור']
->>>>>>> origin/master
       });
       await alert.present();
       return;
     }
   
-<<<<<<< HEAD
     if (this.registrationForm.valid && this.phoneNumber !== null) {
       if (this.password !== this.cpassword) {
         const alert = await this.alertController.create({
@@ -156,27 +111,6 @@ export class RegisterPage {
         email: this.email,
         password: this.password,
         cpassword: this.cpassword,
-=======
-
-    // Check if password and confirm password match
-    if (this.password !== this.cpassword) {
-      const alert = await this.alertController.create({
-        header: 'שגיאה',
-        message: 'סיסמאות לא תואמות.',
-        buttons: ['אישור'],
-      });
-      await alert.present();
-      return;
-    }
-
- 
-      const formData = {
-        parentNames: this.parentNames,
-        username: this.username,
-        password: this.password,
-        cpassword: this.cpassword,
-        email: this.email,
->>>>>>> origin/master
         phoneNumber: this.phoneNumber,
         numberOfChildren: this.numberOfChildren,
         children: this.children.map(child => ({
@@ -188,7 +122,6 @@ export class RegisterPage {
           disableSelector3: child.disableSelector3,
           disableSelector4: child.disableSelector4,
           gender: child.gender,
-<<<<<<< HEAD
           courseType: child.courseType,
         }))
       };
@@ -245,40 +178,6 @@ export class RegisterPage {
       await alert.present();
     }
     
-=======
-          courseType: child.courseType
-        }))
-      };
-
-      
- 
-  
-      //post for Database
-    this.http.post('http://localhost:3000/api/register', formData)
-      .subscribe((response: any) => {
-        console.log(response);
-        const alert = this.alertController.create({
-          header: 'Success!',
-          message: 'User registered successfully!',
-          buttons: ['OK']
-        });
-        alert.then((res) => {
-          res.present();
-          this.router.navigate(['/payment']);
-        });
-      }, (error: any) => {
-        console.log(error);
-        const alert = this.alertController.create({
-          header: 'Error',
-          message: 'An error occurred. Please try again later.',
-          buttons: ['OK']
-        });
-        alert.then((res) => {
-          res.present();
-        });
-      });
-
->>>>>>> origin/master
   }
   
   //This method adding more details for each child
@@ -293,23 +192,16 @@ export class RegisterPage {
         this.children.push({ 
           childName: '', 
           childID: '', 
-<<<<<<< HEAD
           birthdate: new Date().toISOString(),
           gender: '', 
           courseType: '',
           availableCourses: []
-=======
-          birthdate: new Date(),
-          gender: '', 
-          courseType: ''
->>>>>>> origin/master
         });
       }
     } else if (diff < 0) {
       this.children = this.children.slice(0, this.numberOfChildren);
     }
   }
-<<<<<<< HEAD
 
   getMaxDateForChildren() {
     const currentDate = new Date();
@@ -345,31 +237,5 @@ ionChanger() {
 
   trackByCourse(index: number, course: any): string {
     return course.courseType;
-=======
-  //This method sorting to courses by age
-  ionChanger() {
-    const year = new Date().getFullYear();
-    this.children.forEach(child => {
-      const birthdate = new Date(child.birthdate).getFullYear();
-      const age = year - birthdate;
-  
-      if (age >= 6 && age <= 9) {
-        child.disableSelector2 = true;
-        child.disableSelector4 = true;
-        child.disableSelector1 = false;
-        child.disableSelector3 = false;
-      } else if (age >= 9 && age <= 17) {
-        child.disableSelector1 = true;
-        child.disableSelector3 = true;
-        child.disableSelector2 = false;
-        child.disableSelector4 = false;
-      } else {
-        child.disableSelector1 = false;
-        child.disableSelector2 = false;
-        child.disableSelector3 = false;
-        child.disableSelector4 = false;
-      }
-    });
->>>>>>> origin/master
   }
 }

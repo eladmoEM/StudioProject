@@ -2,17 +2,10 @@
 <ion-content>
 
   <div class="image-container">
-<<<<<<< HEAD
     <ion-img src="../../../assets/images/logo.png"></ion-img>
   </div>
 
   <ion-button class="back-button" (click)="goBack()" fill="clear">
-=======
-    <ion-img id="logo" src="https://i.ibb.co/XX7BV00/removebg-preview.png" alt="Logo"></ion-img>
-  </div>
-
-  <ion-button class="back-button" (click)="goToLoginPage()" fill="clear">
->>>>>>> origin/master
     <div class="back-button">
       <ion-img id="backbtn" src="https://i.ibb.co/crMhw0k/removebg-preview.png" alt="icon"></ion-img>
     </div>
@@ -21,7 +14,6 @@
     <form id="registration-form" #registrationForm="ngForm" (ngSubmit)="onClick()">
 
     <ion-list>
-<<<<<<< HEAD
       <br> <br> <br> <br>
       <ion-item>
         <ion-label slot="end">שמות ההורים</ion-label>
@@ -60,56 +52,12 @@
         <ion-input type="number" [(ngModel)]="numberOfChildren" (ionChange)="onNumberOfChildrenChange()" name="numberOfChildren" placeholder="הכניסו מספר ילדים" required></ion-input>
       </ion-item>
       <br> <br>
-=======
-      <ion-item>
-        <ion-label slot="end">שמות ההורים</ion-label>
-        <ion-input type="text"[(ngModel)]="parentNames" name="parentNames" placeholder="הכנס שם משתמש" required></ion-input>
-      </ion-item>
-
-      <br>
-      <ion-item>
-        <ion-label slot="end">שם משתמש</ion-label>
-        <ion-input type="text" [(ngModel)]="username" name="username" placeholder="הכנס שם משתמש" required></ion-input>
-      </ion-item>
-      <br>
-
-      <ion-item>
-        <ion-label slot="end">סיסמא</ion-label>
-        <ion-input type="password" [(ngModel)]="password" name="password" placeholder="הכנס סיסמא" required></ion-input>
-      </ion-item>
-      <br>
-
-      <ion-item>
-        <ion-label slot="end">תקינות סיסמא</ion-label>
-        <ion-input type="password" [(ngModel)]="cpassword" name="confirmPassword" placeholder="אמת סיסמא" required></ion-input>
-      </ion-item>
-      <br>
-
-      <ion-item>
-        <ion-label slot="end">כתובת מייל</ion-label>
-        <ion-input type="email" [(ngModel)]="email" name="email" placeholder="הכנס כתובת מייל" required></ion-input>
-      </ion-item>
-      <br>
-
-      <ion-item>
-        <ion-label slot="end">מספר פלאפון</ion-label>
-        <ion-input type="tel" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="הכנס מספר פלאפון" required></ion-input>
-      </ion-item>
-      <br>
-
-      <ion-item>
-        <ion-label slot="end">מספר ילדים</ion-label>
-        <ion-input type="number" [(ngModel)]="numberOfChildren" (ionChange)="onNumberOfChildrenChange()" name="numberOfChildren" placeholder="הכנס מספר ילדים" required></ion-input>
-      </ion-item>
-      <br>
->>>>>>> origin/master
       <div *ngFor="let child of children; let i=index">
         <div *ngIf="childinfo">
           <ion-list>
       
             <ion-item>
               <ion-label slot="end">שם הילד</ion-label>
-<<<<<<< HEAD
               <ion-input type="text" dir="rtl"  [(ngModel)]="child.childName" name="childName{{i}}" placeholder="הכניסו את שם הילד" required></ion-input>
             </ion-item>
             <br> <br>
@@ -136,29 +84,11 @@
             <br> <br>
             <ion-item>
               <ion-select slot="end" [(ngModel)]="child.gender" name="gender" aria-label="Gender" interface="action-sheet" placeholder="בחרו מין" required>
-=======
-              <ion-input type="text" [(ngModel)]="child.childName" name="childName{{i}}" placeholder="הכנס את שם הילד" required></ion-input>
-            </ion-item>
-            <br>
-            <ion-item>
-              <ion-label slot="end">תעודת זהות</ion-label>
-              <ion-input type="text" [(ngModel)]="child.childID" name="childID{{i}}" placeholder="הכנס תעודת זהות" required></ion-input>
-            </ion-item>
-            <br>
-            <ion-item>
-              <ion-label slot="end">תאריך לידה (6-17)</ion-label>
-              <ion-input type="date" [(ngModel)]="child.birthdate" name="birthdate{{i}}" required (ionChange)="ionChanger()"></ion-input>
-            </ion-item>
-            <br>
-            <ion-item>
-              <ion-select slot="end" [(ngModel)]="child.gender" name="gender" aria-label="Gender" interface="action-sheet" placeholder="בחר מין" required>
->>>>>>> origin/master
                 <ion-select-option value="זכר">זכר</ion-select-option>
                 <ion-select-option value="נקבה">נקבה</ion-select-option>
               </ion-select>
             </ion-item>
             <br>
-<<<<<<< HEAD
 
             <ion-item>
             <ion-select dir="rtl" [(ngModel)]="child.courseType" name="courseType" aria-label="Courses" interface="action-sheet" placeholder="בחרו קורס" required (ionChange)="ionChanger()">
@@ -170,17 +100,6 @@
 
             
             
-=======
-      
-            <ion-item>
-              <ion-select slot="end" [(ngModel)]="child.courseType" name="courseType" aria-label="Courses" interface="action-sheet" placeholder="בחרו קורס" required>
-                <ion-select-option *ngIf="child.disableSelector1" value="היפהופ בוגרים" disabled>היפהופ בוגרים (10-17)</ion-select-option>
-                <ion-select-option *ngIf="child.disableSelector2" value="היפהופ צעירים" disabled>היפהופ צעירים (6-9)</ion-select-option>
-                <ion-select-option *ngIf="child.disableSelector3" value="בלט בוגרים" disabled>בלט בוגרים (10-17)</ion-select-option>
-                <ion-select-option *ngIf="child.disableSelector4" value="בלט צעירים" disabled>בלט צעירים (6-9)</ion-select-option>
-              </ion-select>
-            </ion-item>
->>>>>>> origin/master
       
           </ion-list>
         </div>
@@ -193,7 +112,6 @@
  
   </form>
 </ion-content>
-<<<<<<< HEAD
 
 <ion-modal dir="rtl" #modal trigger="open-modal" [canDismiss]="canDismiss" [presentingElement]="presentingElement">
   <ng-template>
@@ -256,27 +174,6 @@
   </ng-template>
 </ion-modal>
 
-=======
-      <ion-modal #modal trigger="open-modal" [canDismiss]="canDismiss" [presentingElement]="presentingElement">
-        <ng-template>
-          <ion-header>
-            <ion-toolbar>
-              <ion-title>אישור תנאים</ion-title>
-              <ion-buttons slot="end">
-                <ion-button (click)="dismissModal()">אישור</ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ion-header>
-          <ion-content>
-            <p class="ion-padding-horizontal">You must accept the terms and conditions to close this modal.</p>
-            <ion-item>
-              <ion-label class="ion-text-wrap" for="terms">Do you accept the terms and conditions?</ion-label>
-              <ion-checkbox id="terms" (ionChange)="onTermsChanged($event)" [checked]="canDismiss"></ion-checkbox>
-            </ion-item>
-          </ion-content>
-        </ng-template>
-      </ion-modal>
->>>>>>> origin/master
 
 
 

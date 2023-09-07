@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from './course.services'; 
@@ -15,8 +14,6 @@ interface ChildCourse {
 
 }
 
-=======
->>>>>>> origin/master
 
 @Component({
   selector: 'app-home',
@@ -25,7 +22,6 @@ interface ChildCourse {
 })
 export class HomePage implements OnInit {
 
-<<<<<<< HEAD
   isPopupVisible = false;
   selectedDateDetails: ChildCourse[] = [];
   phoneNumber: string | null = '';
@@ -182,11 +178,4 @@ closePopup(): void {
     this.router.navigateByUrl('/login');
     
   }
-=======
-  constructor() { }
-
-  ngOnInit() {
-  }
-
->>>>>>> origin/master
 }
