@@ -2,9 +2,10 @@
   <ion-toolbar>
     <ion-buttons slot="start" class="back-button">
       <ion-button (click)="goBack()" fill="clear">
-        <ion-icon name="arrow-back-outline" class="back-icon"></ion-icon>
+        <ion-icon style="color: blue;" name="arrow-back-outline" class="back-icon"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-title slot="end" class="header-title">דף הבית</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,14 +18,35 @@
   </div>
 
   <div class="image-container">
-    <ion-img id="logo" src="https://i.ibb.co/XX7BV00/removebg-preview.png" alt="Logo"></ion-img>
+    <ion-img src="../../../assets/images/logo.png"></ion-img>
   </div>
- 
- 
+
+
+
+  <div class="display-child" *ngFor="let child of uniqueChildrenList" [style.color]="child.childColor">
+    {{ child.childName }}
+  </div>
+
+
   <div class="container">
-    <ion-datetime presentation="date"></ion-datetime>
+    <ion-datetime presentation="date" [value]="currentDate" 
+              [highlightedDates]="highlightedDates" 
+              (ionChange)="onDateSelected($event)">
+    </ion-datetime>
+
   </div>
   <br> <br>  <br> 
+
+  <div *ngIf="isPopupVisible" class="popup">
+    <ng-container *ngFor="let detail of selectedDateDetails">
+      <h1>{{ detail.childName }}</h1>
+      <h5>{{ detail.courseType }}</h5>
+      <p>{{ detail.startTime }} עד {{ detail.endTime }}</p>
+    </ng-container>
+    <ion-button (click)="closePopup()">סגירה</ion-button>
+  </div>
+  
+
 
   <div class="flex-center">
 

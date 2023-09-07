@@ -10,43 +10,64 @@ import { HttpClient } from '@angular/common/http';
 export class CustomerDetailsComponentPage implements OnInit {
   @Input() customer: any;
   editMode: boolean = false;
+  courses: Course[] = [];
 
   constructor(
     public modalController: ModalController,
     private alertController: AlertController,
     private http: HttpClient
+
   ) {}
 
-  editCustomer() {
-    const url = `http://localhost:3000/api/customers/${this.customer.customerId}`;
-    this.http.post(url, this.customer).subscribe(
-      () => {
-        console.log('Customer details updated successfully!');
-        // Perform any necessary actions after successful update
+  ngOnInit() {
+    this.fetchCourses();
+  }
+  
+
+
+  fetchCourses() {
+    this.http.get('http://localhost:3000/api/courses/list').subscribe(
+      (data: any) => {
+        this.courses = data;
       },
-      (error) => {
-        console.error('Error updating customer details:', error);
-        // Handle the error appropriately
+      error => {
+        console.error('There was an error!', error);
       }
     );
   }
+  
+
+  editCustomer() {
+    const url = `http://localhost:3000/api/customers/${this.customer.phoneNumber}/${this.customer.childID}`;
+    this.http.post(url, this.customer).subscribe(
+      () => {
+        console.log('Customer details updated successfully!');
+      },
+      (error) => {
+        console.error('Error updating customer details:', error);
+      }
+    );
+  }
+
+
 
   toggleEditMode() {
     this.editMode = !this.editMode;
     
   }
 
+  cancel() {
+    this.editMode = false;
+  }
+
   saveChanges() {
-    // Save changes to the database
-    const url = `http://localhost:3000/api/customers/${this.customer.phoneNumber}`;
+
+    const url = `http://localhost:3000/api/customers/${this.customer.phoneNumber}/${this.customer.childID}`;
     this.http.post(url, this.customer).subscribe(
       () => {
         console.log('Customer details updated successfully!');
-        // Perform any necessary actions after successful update
 
-        // Toggle the edit mode to turn it off
         this.toggleEditMode();
-
       },
       (error) => {
         console.error('Error updating customer details:', error);
@@ -54,6 +75,7 @@ export class CustomerDetailsComponentPage implements OnInit {
       }
     );
   }
+  
 
   async confirmDelete() {
     const alert = await this.alertController.create({
@@ -84,24 +106,26 @@ export class CustomerDetailsComponentPage implements OnInit {
     this.http.delete(url).subscribe(
       () => {
         console.log('Customer deleted successfully!');
-        // Perform any necessary actions after successful deletion
-  
-        // Close the modal or navigate to another page
+
         this.closeModal();
-        // Reload the page
+     
         window.location.reload();
       },
       (error) => {
         console.error('Error deleting customer:', error);
-        // Handle the error appropriately
+       
       }
     );
   }
 
-  ngOnInit() {}
+
 
   async closeModal() {
     await this.modalController.dismiss();
     window.location.reload();
   }
+}
+
+interface Course {
+  courseType: string;
 }

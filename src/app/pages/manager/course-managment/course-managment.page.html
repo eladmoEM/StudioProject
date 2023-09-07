@@ -11,18 +11,29 @@
 
 <ion-content class="ion-padding">
   <div class="image-container">
-    <ion-img
-      id="logo"
-      src="https://i.ibb.co/XX7BV00/removebg-preview.png"
-      alt="Logo"
-    ></ion-img>
+    <ion-img src="../../../assets/images/logo.png"></ion-img>
   </div>
+  <ion-button fill="outline" size="full" (click)="openAddCourseModal()">הוסיפו קורס חדש</ion-button>
 
-  <div class="course-list">
-    <ion-card *ngFor="let course of courses" class="course-card">
+  <div class="course-cards" dir="rtl">
+    <ion-card *ngFor="let course of consolidatedCourses" (click)="openModal(course)">
       <ion-card-header>
-        <ion-card-title>{{ course.title }}</ion-card-title>
+        <ion-card-title>{{ course.courseType }}</ion-card-title>
       </ion-card-header>
+      <ion-card-content>
+        <p>מורים: {{ course.teachers }}</p>
+        <p>מספר משתתפים: {{course.childIDs.length}}</p>
+
+
+        <div *ngIf="course.schedule.length > 0">
+          <p>ימי הקורס:</p>
+          <div *ngFor="let timeSlot of course.schedule">
+            <p>יום: {{ timeSlot.dayOfWeek }}</p>
+            <p>שעת התחלה: {{ timeSlot.startTime }}</p>
+            <p>שעת סיום: {{ timeSlot.endTime }}</p>
+          </div>
+        </div>
+      </ion-card-content>
     </ion-card>
   </div>
 </ion-content>

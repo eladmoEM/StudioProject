@@ -9,6 +9,7 @@ import { ModalController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -18,10 +19,9 @@ export class RegisterPage {
   @ViewChild('registrationForm', { static: false })
   registrationForm!: NgForm;
   parentNames: string = '';
-  username: string = '';
+  email: string = '';
   password: string = '';
   cpassword: string = '';
-  email: string = '';
   phoneNumber: string = '';
   numberOfChildren: number = 0;
   children: any[] = [];
@@ -39,6 +39,9 @@ export class RegisterPage {
   presentingElement: Element | null = null;
   isContinueButtonVisible = false;
   isContinueButtonNoNVisible = true;
+  courses: any[] = [];
+  totalSum: number = 0;
+
   
   constructor(
     private router: Router,
@@ -49,12 +52,24 @@ export class RegisterPage {
     private afAuth: AngularFireAuth
   ) {}
 
-  ngOnInit() {
-    this.presentingElement = document.querySelector('.ion-page');
+  removeDuplicateCourses(courses: any[]): any[] {
+    return Array.from(new Set(courses.map(a => a.courseType)))
+      .map(courseType => {
+        return courses.find(a => a.courseType === courseType);
+      });
   }
 
-  goToLoginPage() {
-    this.navCtrl.navigateForward('/login');
+
+  ngOnInit() {
+    this.http.get('http://localhost:3000/api/courses').subscribe((response: any) => {
+      this.courses = response;
+    });
+    this.presentingElement = document.querySelector('.ion-page');
+    
+  }
+
+  goBack() {
+    this.router.navigate(['/login', { totalSum: this.totalSum }]);
   }
 
   onTermsChanged(event: Event) {
@@ -69,9 +84,17 @@ export class RegisterPage {
   }
 
   async onClick() {
-    
-    if (this.registrationForm.valid) {
-      // Check if password and confirm password match
+    if (!this.phoneNumber || !this.parentNames || !this.email || !this.password || !this.cpassword || !this.numberOfChildren) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Please fill all the required fields.',
+        buttons: ['OK'],
+      });
+      await alert.present();
+      return;
+    }
+  
+    if (this.registrationForm.valid && this.phoneNumber !== null) {
       if (this.password !== this.cpassword) {
         const alert = await this.alertController.create({
           header: 'Error',
@@ -81,13 +104,13 @@ export class RegisterPage {
         await alert.present();
         return;
       }
-
+  
+    
       const formData = {
         parentNames: this.parentNames,
-        username: this.username,
+        email: this.email,
         password: this.password,
         cpassword: this.cpassword,
-        email: this.email,
         phoneNumber: this.phoneNumber,
         numberOfChildren: this.numberOfChildren,
         children: this.children.map(child => ({
@@ -99,73 +122,62 @@ export class RegisterPage {
           disableSelector3: child.disableSelector3,
           disableSelector4: child.disableSelector4,
           gender: child.gender,
-          courseType: child.courseType
+          courseType: child.courseType,
         }))
       };
-
-      // Register user in Firebase
-      this.afAuth.createUserWithEmailAndPassword(this.email, this.password)
-        .then(user => {
-          // If registration is successful
-          // post for Database
-          this.http.post('http://localhost:3000/api/register', formData)
-            .subscribe((response: any) => {
-              const alert = this.alertController.create({
-                header: 'Success!',
-                message: 'User registered successfully!',
-                buttons: ['OK']
-              });
-              alert.then((res) => {
-                res.present();
-                this.router.navigate(['/payment']);
-              });
-            }, (error: any) => {
-              const alert = this.alertController.create({
-                header: 'Error',
-                message: 'An error occurred. Please try again later.',
-                buttons: ['OK']
-              });
-              alert.then((res) => {
-                res.present();
-              });
-            });
-        })
-        .catch(async error => {
-          // If registration fails
+  
+      try {
+        // Register user in Firebase
+        await this.afAuth.createUserWithEmailAndPassword(this.email, this.password);
+        
+        
+        try {
+          await this.http.post('http://localhost:3000/api/register', formData).toPromise();
+          const alert = await this.alertController.create({
+            header: 'הצלחה',
+            message: 'נרשמתם בהצלחה לאפליקציה',
+            buttons: ['אישור'],
+          });
+          await alert.present();
+          alert.onDidDismiss().then(() => {
+            this.router.navigate(['/payment', { totalSum: this.totalSum }]);
+          });
+          
+          
+        } catch (error) {
+          const alert = await this.alertController.create({
+            header: 'Error',
+            message: 'An error occurred. Please try again later.',
+            buttons: ['OK'],
+          });
+          await alert.present();
+        }
+      } catch (error) {
+        if (error instanceof Error) { 
           const alert = await this.alertController.create({
             header: 'Error',
             message: error.message,
             buttons: ['OK'],
           });
           await alert.present();
-        });
-      
+        } else {  
+          const alert = await this.alertController.create({
+            header: 'Error',
+            message: 'An unknown error occurred',
+            buttons: ['OK'],
+          });
+          await alert.present();
+        }
+      }
     } else {
       const alert = await this.alertController.create({
         header: 'Error',
-        message: 'Please fill out all details',
-        buttons: ['OK']
+        message: 'Please fill all the required fields.',
+        buttons: ['OK'],
       });
       await alert.present();
-      return;
     }
-  
-    this.http.post('http://localhost:3000/api/register', FormData)
-    .subscribe((response: any) => {
-      console.log(response);
-      const alert = this.alertController.create({
-        header: 'Success!',
-        message: 'User registered successfully!',
-        buttons: ['OK']
-      });
-      alert.then((res) => {
-        res.present();
-        this.router.navigate(['/payment']);
-      });
-    }, (error: any) => {
-      console.log(error);
-    });
-  
+    
   }
   
   //This method adding more details for each child
@@ -180,38 +192,50 @@ export class RegisterPage {
         this.children.push({ 
           childName: '', 
           childID: '', 
-          birthdate: new Date(),
+          birthdate: new Date().toISOString(),
           gender: '', 
-          courseType: ''
+          courseType: '',
+          availableCourses: []
         });
       }
     } else if (diff < 0) {
       this.children = this.children.slice(0, this.numberOfChildren);
     }
   }
-  //This method sorting to courses by age
-  ionChanger() {
-    const year = new Date().getFullYear();
-    this.children.forEach(child => {
-      const birthdate = new Date(child.birthdate).getFullYear();
-      const age = year - birthdate;
+
+  getMaxDateForChildren() {
+    const currentDate = new Date();
+    currentDate.setFullYear(currentDate.getFullYear() - 17); 
+    return currentDate.toISOString().split('T')[0];
+  }
+
+  getMinDateForChildren() {
+    const currentDate = new Date();
+    currentDate.setFullYear(currentDate.getFullYear() - 6); 
+    return currentDate.toISOString().split('T')[0];
+  }
+
+
+
+ionChanger() {
   
-      if (age >= 6 && age <= 9) {
-        child.disableSelector2 = true;
-        child.disableSelector4 = true;
-        child.disableSelector1 = false;
-        child.disableSelector3 = false;
-      } else if (age >= 9 && age <= 17) {
-        child.disableSelector1 = true;
-        child.disableSelector3 = true;
-        child.disableSelector2 = false;
-        child.disableSelector4 = false;
-      } else {
-        child.disableSelector1 = false;
-        child.disableSelector2 = false;
-        child.disableSelector3 = false;
-        child.disableSelector4 = false;
-      }
+  const currentYear = new Date().getFullYear();
+  
+  this.children.forEach((child) => {
+    const birthdate = new Date(child.birthdate).getFullYear();
+    const age = currentYear - birthdate;
+
+    const availableCourses = this.courses.filter(course => {
+      return age >= course.min_age && age <= course.max_age;
     });
+
+    child.availableCourses = this.removeDuplicateCourses(availableCourses);
+
+  });
+
+}
+
+  trackByCourse(index: number, course: any): string {
+    return course.courseType;
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private alertController: AlertController,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {}
@@ -28,34 +30,43 @@ export class LoginPage implements OnInit {
   forgotPassword() {
     this.router.navigateByUrl('/forgot-password');
   }
-
   async login() {
-    // Check if the email and password are both 'Admin'
+
     if (this.email.toLowerCase() === 'admin' && this.password === 'Admin') {
-      // Navigate to the manager page
-      this.router.navigateByUrl('/manager');
-    } else {
-      try {
-        const userCredential = await this.afAuth.signInWithEmailAndPassword(
-          this.email,
-          this.password
-        );
-  
-        // User has successfully logged in
-        console.log(userCredential);
-        this.router.navigateByUrl('/home');
-      } catch (error) {
-        console.log(error);
-  
-        // Show an error message if login failed
-        const alert = await this.alertController.create({
-          header: 'שגיאה',
-          message: 'אימייל או סיסמה אינם תקינים',
-          buttons: ['אישור'],
-        });
-        await alert.present();
-      }
+      window.location.href = '/manager';
+      return;
     }
-  }
+    try {
+    
+      const userCredential = await this.afAuth.signInWithEmailAndPassword(this.email, this.password);
+      console.log(userCredential);
+  
+
+  
+     
+      this.http.post('http://localhost:3000/api/login', {email: this.email})
+      .subscribe(async (data: any) => {
+    
+        const phoneNumber = data.phoneNumber;
+  
+  
+        localStorage.setItem('phoneNumber', phoneNumber);
+        console.log(phoneNumber);
+  
+       
+        window.location.href = '/home';
+      });
+  
+    } catch (error) {
+      console.log(error);
+      const alert = await this.alertController.create({
+        header: 'שגיאה',
+        message: 'אימייל או סיסמה אינם תקינים',
+        buttons: ['אישור'],
+      });
+      await alert.present();
+    }
   
 }
+  
+}  

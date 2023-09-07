@@ -2,10 +2,10 @@
 <ion-content>
 
   <div class="image-container">
-    <ion-img id="logo" src="https://i.ibb.co/XX7BV00/removebg-preview.png" alt="Logo"></ion-img>
+    <ion-img src="../../../assets/images/logo.png"></ion-img>
   </div>
 
-  <ion-button class="back-button" (click)="goToLoginPage()" fill="clear">
+  <ion-button class="back-button" (click)="goBack()" fill="clear">
     <div class="back-button">
       <ion-img id="backbtn" src="https://i.ibb.co/crMhw0k/removebg-preview.png" alt="icon"></ion-img>
     </div>
@@ -14,15 +14,17 @@
     <form id="registration-form" #registrationForm="ngForm" (ngSubmit)="onClick()">
 
     <ion-list>
+      <br> <br> <br> <br>
       <ion-item>
         <ion-label slot="end">שמות ההורים</ion-label>
-        <ion-input type="text"[(ngModel)]="parentNames" name="parentNames" placeholder="הכניסו שמות ההורים" required></ion-input>
+        <ion-input style="padding: 2%;" type="text" dir="rtl" [(ngModel)]="parentNames" name="parentNames" placeholder="הכניסו שמות ההורים" required></ion-input>
       </ion-item>
 
       <br> <br>
+     
       <ion-item>
-        <ion-label slot="end">שם משתמש</ion-label>
-        <ion-input type="text" [(ngModel)]="username" name="username" placeholder="הכניסו שם משתמש" required></ion-input>
+        <ion-label slot="end">כתובת מייל</ion-label>
+        <ion-input type="email" [(ngModel)]="email" name="email" placeholder="הכניסו כתובת מייל" required></ion-input>
       </ion-item>
       <br> <br>
 
@@ -33,16 +35,11 @@
       <br> <br>
 
       <ion-item>
-        <ion-label slot="end">תקינות סיסמא</ion-label>
-        <ion-input type="password" [(ngModel)]="cpassword" name="confirmPassword" placeholder="אמתו סיסמא" required></ion-input>
+        <ion-label slot="end">אימות סיסמא</ion-label>
+        <ion-input type="password" [(ngModel)]="cpassword" name="confirmPassword" placeholder="אימות סיסמא" required></ion-input>
       </ion-item>
       <br> <br>
 
-      <ion-item>
-        <ion-label slot="end">כתובת מייל</ion-label>
-        <ion-input type="email" [(ngModel)]="email" name="email" placeholder="הכניסו כתובת מייל" required></ion-input>
-      </ion-item>
-      <br> <br>
 
       <ion-item>
         <ion-label slot="end">מספר טלפון</ion-label>
@@ -61,18 +58,29 @@
       
             <ion-item>
               <ion-label slot="end">שם הילד</ion-label>
-              <ion-input type="text" [(ngModel)]="child.childName" name="childName{{i}}" placeholder="הכניסו את שם הילד" required></ion-input>
+              <ion-input type="text" dir="rtl"  [(ngModel)]="child.childName" name="childName{{i}}" placeholder="הכניסו את שם הילד" required></ion-input>
             </ion-item>
             <br> <br>
             <ion-item>
               <ion-label slot="end">תעודת זהות (ילד)</ion-label>
               <ion-input type="text" [(ngModel)]="child.childID" name="childID{{i}}" placeholder="הכניסו תעודת זהות" required></ion-input>
             </ion-item>
-            <br> <br>
+            <br> <br> <br> <br> <br> <br>
             <ion-item>
-              <ion-label slot="end">תאריך לידה של הילד/ה (6-17)</ion-label>
-              <ion-input type="date" [(ngModel)]="child.birthdate" name="birthdate{{i}}" required (ionChange)="ionChanger()"></ion-input>
+              <ion-label>תאריך לידה של הילד/ה (6-17)</ion-label>
+              <ion-datetime presentation="date" 
+                            [preferWheel]="true" 
+                            [(ngModel)]="child.birthdate" 
+                            name="birthdate{{i}}" 
+                            required 
+                            [min]="getMaxDateForChildren()" 
+                            [max]="getMinDateForChildren()" 
+                            (ionChange)="ionChanger()">
+              </ion-datetime>
             </ion-item>
+            
+            
+
             <br> <br>
             <ion-item>
               <ion-select slot="end" [(ngModel)]="child.gender" name="gender" aria-label="Gender" interface="action-sheet" placeholder="בחרו מין" required>
@@ -81,15 +89,17 @@
               </ion-select>
             </ion-item>
             <br>
-      
+
             <ion-item>
-              <ion-select slot="end" [(ngModel)]="child.courseType" name="courseType" aria-label="Courses" interface="action-sheet" placeholder="בחרו קורס" required>
-                <ion-select-option *ngIf="child.disableSelector1" value="היפהופ בוגרים" disabled>היפהופ בוגרים (10-17)</ion-select-option>
-                <ion-select-option *ngIf="child.disableSelector2" value="היפהופ צעירים" disabled>היפהופ צעירים (6-9)</ion-select-option>
-                <ion-select-option *ngIf="child.disableSelector3" value="בלט בוגרים" disabled>בלט בוגרים (10-17)</ion-select-option>
-                <ion-select-option *ngIf="child.disableSelector4" value="בלט צעירים" disabled>בלט צעירים (6-9)</ion-select-option>
-              </ion-select>
-            </ion-item>
+            <ion-select dir="rtl" [(ngModel)]="child.courseType" name="courseType" aria-label="Courses" interface="action-sheet" placeholder="בחרו קורס" required (ionChange)="ionChanger()">
+              <ion-select-option slot="start" *ngFor="let course of child.availableCourses; trackBy: trackByCourse" [value]="course.courseType">
+                {{course.courseType}} ({{course.min_age}}-{{course.max_age}})
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+            
+            
       
           </ion-list>
         </div>
@@ -102,25 +112,68 @@
  
   </form>
 </ion-content>
-      <ion-modal #modal trigger="open-modal" [canDismiss]="canDismiss" [presentingElement]="presentingElement">
-        <ng-template>
-          <ion-header>
-            <ion-toolbar>
-              <ion-title>אישור תנאים</ion-title>
-              <ion-buttons slot="end">
-                <ion-button (click)="dismissModal()">אישור</ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ion-header>
-          <ion-content>
-            <p class="ion-padding-horizontal">You must accept the terms and conditions to close this modal.</p>
-            <ion-item>
-              <ion-label class="ion-text-wrap" for="terms">Do you accept the terms and conditions?</ion-label>
-              <ion-checkbox id="terms" (ionChange)="onTermsChanged($event)" [checked]="canDismiss"></ion-checkbox>
-            </ion-item>
-          </ion-content>
-        </ng-template>
-      </ion-modal>
+
+<ion-modal dir="rtl" #modal trigger="open-modal" [canDismiss]="canDismiss" [presentingElement]="presentingElement">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>תקנון</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="dismissModal()">אישור</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+
+      <div class="ion-padding-horizontal">
+        <h3>כללים ותנאים</h3>
+        <p>הרישום כאן ו/או התשלומים בפועל, מהווים הסכמה לתנאים הנ"ל:</p>
+        <ul>
+          <li>שנת הפעילות תחל ב1 לספטמבר ותסתיים ב30 ליוני.</li>
+          <li>תינתן אפשרות לשיעור ניסיון אחד ללא התחייבות לפני ביצוע הרישום, משתתף שהחליט להירשם ישלם גם בעבור השיעור הנ"ל, בכל מקרה לא יובטח מקום בשיעור אלא לאחר הרשמה והסדר תשלום כאמור לעיל.</li>
+          <li>בחגי ישראל ובערבי חג לא יתקיימו שיעורים לרבות יום הזיכרון לחללי צה"ל ויום הזיכרון לשואה ולגבורה. בחול המועד סוכות ופסח לא יתקיימו שיעורים.</li>
+          <li>המחירים מחושבים עפ"י עלויות הביצוע בפועל. החופשות בחגים שבהן אין פעילות , כמפורט בסעיף 3, נכללות בעלות כללית. ההרשמה הינה הרשמה שנתית ולא יתאפשר תשלום חודש בחודשו.</li>
+          <li>התשלום בגין הפעילות הינו תשלום חודשי, משתתף לא יזוכה בגין השתתפות חלקית.</li>
+          <li>הנהלת הסטודיו רשאית לפי שיקול דעתה לשנות ימים ושעות פעילות, לבטל או לאחד שיעורים.</li>
+          <li>פתיחת כל שיעור מותנית במספר משתתפים מינימלי, אי לכך ייתכנו שינויים במערכת השעות.</li>
+          <li>בגין היעדרות מדריכה, השיעור יועבר ע"י ממלאת מקום ו/או ידחה למועד אחר עפ"י שיקול הנהלת הסטודיו.</li>
+          <li>כל משתתף יתנהג באופן נאות תוך שמירה על מתקני הסטודיו. הנהלת הסטודיו רשאית להרחיק משתתפת בשל התנהגות בלתי נאותה ו/או הפרעה במהלך התקין של השיעורים, הכל עפ"י שיקול דעתה הבלעדי.</li>
+          <li>במקרה והוחלט לקיים הופעת סוף שנה באולם הכרטיס יהיה כרוך בתשלום נפרד.</li>
+      
+        </ul>
+
+        <h3>תשלומים</h3>
+        <ul>
+          <li>התשלום הינו שנתי וישולם בתשלומים חודשיים מראש, החל מחודש ספטמבר ועד לחודש יוני.</li>
+          <p>אופן התשלום</p>
+          <li>ניתן לשלם באשראי, עד 11 תשלומים. לא ניתן לשלם בכרטיס מסוג אמריקן אקספרס או דיינרס. ניתן לשלם בהמחאות דחויות, עד 10 צ'קים. ניתן לשלם במזומן לשנה שלמה מראש.</li>
+          <br>
+          <li>הנחה בגובה 5% תנתן למשתתף שני מאותה המשפחה.</li>
+        </ul>
+        
+        <h3>נוהל החזרת כספים</h3>
+        <ul>
+        <li>אי השתתפות בשיעור מכל סיבה שהיא אינה משחררת את המשתתף מתשלום דמי הלימוד המלאים. לא יינתן זיכוי כספי בגין היעדרות משיעורים, עקב נסיעות או סיבות אחרות זמניות. אין החזר כספי בגין חלקיות חודש.</li>
+        <li>במקרה של הפסקת לימודים, יש להודיע בטלפון או במייל, עד ה20 בכל חודש. הודעה על הפסקת לימודים אחרי תחילת חודש לועזי, חייב תשלום מלא של אותו חודש.</li>
+        <li>החזר כספי, בגין הפסקת השתתפות יימסר להורים בלבד.</li>
+        <li>במקרה של ביטול עסקה חלקי(זיכוי), תבוטל העסקה במלואה ע"י חברת האשראי ובמקומה תבוצע עסקה חדשה על יתרת החובה.</li>
+        <li>ניתן לבטל השתתפות עד ה31/3 באותה שנת לימודים, לאחר תאריך זה לא יתבצעו החזרים כספיים. לאחר התאריך הנ"ל יחויב המשתתף עד סוף שנת הפעילות.</li>
+        </ul>
+
+        <h3>הצהרת בריאות</h3>
+        <ul>
+          <li>אני מאשר.ת מודיע.ה ומתחייב.ת בזאת כלפי ענבר פיינר זכאי כי אין כל מניעה רפואית או אחרת להשתתפות ביתי בשיעורי הסטודיו ואני מתחייב.ת להודיע לענבר על כל בעיה רפואית באם תהיה במהלך שנת הפעילות.</li>
+        </ul>
+        <br> <br>
+      </div>
+      <ion-item>
+        <ion-label class="ion-text-wrap" for="terms">האם את/ה מקבל/ת את התנאים וההגבלות?</ion-label>
+        <ion-checkbox id="terms" (ionChange)="onTermsChanged($event)" [checked]="canDismiss"></ion-checkbox>
+      </ion-item>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
 
 
 

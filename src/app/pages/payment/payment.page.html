@@ -1,13 +1,39 @@
-<ion-header [translucent]="true">
+<ion-content>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="back-button">
+
+    </ion-buttons>
+    <ion-title slot="end" class="header-title">אמצעי תשלום</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-    
-    <div class="apple-pay-option">
-      <img class=".apple-pay-option img" src="https://img.uxwing.com/wp-content/themes/uxwing/download/brands-social-media/apple-icon.png" alt="Apple Pay Icon">
-      <button>Pay with Apple Pay</button>
+
+<ion-card>
+  <ion-img src="../../../assets/images/logo.png"></ion-img>
+  <ion-card-header>
+    <ion-card-title dir="rtl">סכום התשלום</ion-card-title>
+    <br>
+  </ion-card-header>
+
+  <!-- <ion-card-content dir="rtl">
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <ion-icon name="wallet" style="font-size: 24px;"></ion-icon>
+      <span style="font-size: 24px; font-weight: 600;">סך הכול:</span>
+      <span dir="rtl" style="font-size: 22px; font-weight: 700; color: #007bff;">{{ totalSum }}₪</span>
+
     </div>
+  </ion-card-content>
+   -->
   
   
+</ion-card>
+
+  <div class="payment-container">
+    <iframe src="https://paymentiframe.com/tag.cgi?u=YOURCGISCRIPT&k=STRIPEPUBLISHABLEKEY" frameBorder=0 height=230px width=350px></iframe>
+  </div>
+  
+  <ion-button (click)="navigateLogin()" size="full">מעבר לתשלום</ion-button>
 
 </ion-content>

@@ -10,7 +10,7 @@ export class AuthService {
 
   async resetPassword(email: string): Promise<void> {
     try {
-      await this.afAuth.sendPasswordResetEmail(email); // Use AngularFireAuth method here
+      await this.afAuth.sendPasswordResetEmail(email);
       console.log('Password reset email sent');
     } catch (error) {
       console.error('Error sending password reset email', error);

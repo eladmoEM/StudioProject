@@ -1,0 +1,58 @@
+<ion-content class="ion-padding">
+  <div class="container" dir="rtl">
+    <ion-card-title style="text-align: center;">הוספת קורס חדש</ion-card-title>
+    <ion-item>
+      <ion-label position="floating">שם הקורס:</ion-label>
+      <ion-input [(ngModel)]="courseType"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">שם מורה:</ion-label>
+      <ion-input [(ngModel)]="teachers"></ion-input>
+    </ion-item>
+
+   
+
+    <ion-item>
+      <ion-label position="floating">גיל מינימלי:</ion-label>
+      <ion-select [(ngModel)]="min_age">
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+        <ion-select-option value="5">5</ion-select-option>
+        <ion-select-option value="6">6</ion-select-option>
+        <ion-select-option value="7">7</ion-select-option>
+        <ion-select-option value="8">8</ion-select-option>
+        <ion-select-option value="9">9</ion-select-option>
+        <ion-select-option value="10">10</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">גיל מקסימלי:</ion-label>
+      <ion-select [(ngModel)]="max_age">
+        <ion-select-option value="11">11</ion-select-option>
+        <ion-select-option value="12">12</ion-select-option>
+        <ion-select-option value="13">13</ion-select-option>
+        <ion-select-option value="14">14</ion-select-option>
+        <ion-select-option value="15">15</ion-select-option>
+        <ion-select-option value="16">16</ion-select-option>
+        <ion-select-option value="17">17</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="floating">עלות הקורס</ion-label>
+      <ion-input [(ngModel)]="money" type="number"></ion-input> 
+    </ion-item>
+    
+
+    <div class="buttons">
+      <ion-button color="success" expand="block" (click)="addCourse()">הוסף</ion-button>
+      <ion-button  expand="block" (click)="dismissModal()">ביטול</ion-button>
+    </div>
+
+  </div>
+</ion-content>
