@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # MyDancingStudioProject
 A hybrid application designed for managing and engaging with dancing studios.
 
@@ -55,7 +54,3 @@ Managers can manage all customer-related data here.
 ![Courses Management Screenshot](./images/courses_management.jpg)
 
 All course-related data can be managed here.
-=======
-# mydancingstudioproject
-Hybrid application for dancing studios
->>>>>>> origin/master
