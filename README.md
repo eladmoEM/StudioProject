@@ -9,7 +9,7 @@ A hybrid application designed for managing and engaging with dancing studios.
 - [Manager Side](#manager-side)
   - [Manager Page](#manager-page)
   - [Customer Management](#customer-management)
-  - [Courses Management](#courses-management
+  - [Courses Management](#courses-management)
 
 ---
 
@@ -17,19 +17,28 @@ A hybrid application designed for managing and engaging with dancing studios.
 
 ### Login Page
 
-![Login Page Screenshot](./src/assets/images/login.png)
+<div style="display: flex;">
+  <img src="./src/assets/images/login.png" alt="Login Page Screenshot" style="width: 50%;">
+  <img src="./src/assets/images/login.gif" alt="Login Page GIF" style="width: 50%;">
+</div>
 
 The Login Page allows registered users to sign in to their accounts.
 
 ### Register Page
 
-![Register Page Screenshot](./src/assets/images/register.gif)
+<div style="display: flex;">
+  <img src="./src/assets/images/register.png" alt="Register Page Screenshot" style="width: 50%;">
+  <img src="./src/assets/images/register.gif" alt="Register Page GIF" style="width: 50%;">
+</div>
 
 New users can register for an account on this page.
 
 ### Home Page
 
-![Home Page Screenshot](./src/assets/images/home.gif)
+<div style="display: flex;">
+  <img src="./src/assets/images/home.png" alt="Home Page Screenshot" style="width: 50%;">
+  <img src="./src/assets/images/home.gif" alt="Home Page GIF" style="width: 50%;">
+</div>
 
 This is the landing page once the user logs in. Here you can find all the services offered.
 
@@ -39,18 +48,27 @@ This is the landing page once the user logs in. Here you can find all the servic
 
 ### Manager Page
 
-![Manager Page Screenshot](./src/assets/images/manager.gif)
+<div style="display: flex;">
+  <img src="./src/assets/images/manager.png" alt="Manager Page Screenshot" style="width: 50%;">
+  <img src="./src/assets/images/manager.gif" alt="Manager Page GIF" style="width: 50%;">
+</div>
 
 This is the main dashboard where managers can monitor and control all activities related to the dancing studio.
 
 ### Customer Management
 
-![Customer Management Screenshot](./src/assets/images/customer_managment.gif)
+<div style="display: flex;">
+  <img src="./src/assets/images/customer_management.png" alt="Customer Management Screenshot" style="width: 50%;">
+  <img src="./src/assets/images/customer_management.gif" alt="Customer Management GIF" style="width: 50%;">
+</div>
 
 Managers can manage all customer-related data here.
 
 ### Courses Management
 
-![Courses Management Screenshot](./src/assets/images/course_managment.gif)
+<div style="display: flex;">
+  <img src="./src/assets/images/course_management.png" alt="Courses Management Screenshot" style="width: 50%;">
+  <img src="./src/assets/images/course_management.gif" alt="Courses Management GIF" style="width: 50%;">
+</div>
 
 All course-related data can be managed here.
