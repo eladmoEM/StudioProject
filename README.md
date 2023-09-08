@@ -57,7 +57,7 @@ This is the main dashboard where managers can monitor and control all activities
 ### Customer Management
 
 <div style="display: flex;">
-  <img src="./src/assets/images/customer_management.gif" alt="Customer Management GIF" style="width: 75%;">
+  <img src="./src/assets/images/customer_managment.gif" alt="Customer Management GIF" style="width: 75%;">
 </div>
 
 Managers can manage all customer-related data here.
@@ -65,7 +65,7 @@ Managers can manage all customer-related data here.
 ### Courses Management
 
 <div style="display: flex;">
-  <img src="./src/assets/images/course_management.gif" alt="Courses Management GIF" style="width: 75%;">
+  <img src="./src/assets/images/course_managment.gif" alt="Courses Management GIF" style="width: 75%;">
 </div>
 
 All course-related data can be managed here.
