@@ -27,7 +27,7 @@ The Login Page allows registered users to sign in to their accounts.
 
 <div style="display: flex;">
   <img src="./src/assets/images/register.png" alt="Register Page Screenshot" style="width: 30%;">
-  <img src="./src/assets/images/register.gif" alt="Register Page GIF" style="width: 70%;">
+  <img src="./src/assets/images/register.gif" alt="Register Page GIF" style="width: 75%;">
 </div>
 
 New users can register for an account on this page.
@@ -35,8 +35,8 @@ New users can register for an account on this page.
 ### Home Page
 
 <div style="display: flex;">
-  <img src="./src/assets/images/home.png" alt="Home Page Screenshot" style="width: 50%;">
-  <img src="./src/assets/images/home.gif" alt="Home Page GIF" style="width: 50%;">
+  <img src="./src/assets/images/home.png" alt="Home Page Screenshot" style="width: 30%;">
+  <img src="./src/assets/images/home.gif" alt="Home Page GIF" style="width: 75%;">
 </div>
 
 This is the landing page once the user logs in. Here you can find all the services offered.
@@ -49,7 +49,7 @@ This is the landing page once the user logs in. Here you can find all the servic
 
 <div style="display: flex;">
   <img src="./src/assets/images/manager.png" alt="Manager Page Screenshot" style="width: 50%;">
-  <img src="./src/assets/images/manager.gif" alt="Manager Page GIF" style="width: 50%;">
+  <img src="./src/assets/images/manager.gif" alt="Manager Page GIF" style="width: 75%;">
 </div>
 
 This is the main dashboard where managers can monitor and control all activities related to the dancing studio.
@@ -57,8 +57,7 @@ This is the main dashboard where managers can monitor and control all activities
 ### Customer Management
 
 <div style="display: flex;">
-  <img src="./src/assets/images/customer_management.png" alt="Customer Management Screenshot" style="width: 50%;">
-  <img src="./src/assets/images/customer_management.gif" alt="Customer Management GIF" style="width: 50%;">
+  <img src="./src/assets/images/customer_management.gif" alt="Customer Management GIF" style="width: 75%;">
 </div>
 
 Managers can manage all customer-related data here.
@@ -66,8 +65,7 @@ Managers can manage all customer-related data here.
 ### Courses Management
 
 <div style="display: flex;">
-  <img src="./src/assets/images/course_management.png" alt="Courses Management Screenshot" style="width: 50%;">
-  <img src="./src/assets/images/course_management.gif" alt="Courses Management GIF" style="width: 50%;">
+  <img src="./src/assets/images/course_management.gif" alt="Courses Management GIF" style="width: 75%;">
 </div>
 
 All course-related data can be managed here.
