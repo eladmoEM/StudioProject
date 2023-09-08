@@ -1,4 +1,4 @@
-<!-- # MyDancingStudioProject
+# MyDancingStudioProject
 A hybrid application designed for managing and engaging with dancing studios.
 
 ## Table of Contents
@@ -53,4 +53,4 @@ Managers can manage all customer-related data here.
 
 ![Courses Management Screenshot](./src/assets/images/course_managment.gif)
 
-All course-related data can be managed here. -->
+All course-related data can be managed here.
