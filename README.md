@@ -30,7 +30,7 @@ The Login Page allows registered users to sign in to their accounts.
   <img src="./src/assets/images/register.gif" alt="Register Page GIF" style="width: 75%;">
 </div>
 
-New users can register for an account on this page.
+New users can register their children on this screen.
 
 ### Home Page
 
@@ -52,7 +52,7 @@ This is the landing page once the user logs in. Here you can find all the servic
   <img src="./src/assets/images/manager.gif" alt="Manager Page GIF" style="width: 75%;">
 </div>
 
-This is the main dashboard where managers can monitor and control all activities related to the dancing studio.
+This is the main dashboard where managers can monitor and control all activities related to his studio.
 
 ### Customer Management
 
@@ -60,7 +60,7 @@ This is the main dashboard where managers can monitor and control all activities
   <img src="./src/assets/images/customer_managment.gif" alt="Customer Management GIF" style="width: 75%;">
 </div>
 
-Managers can manage all customer-related data here.
+Managers can manage all customer-related data here
 
 ### Courses Management
 
