@@ -19,7 +19,6 @@ A hybrid application designed for managing and engaging with dancing studios.
 
 <div style="display: flex;">
   <img src="./src/assets/images/login.png" alt="Login Page Screenshot" style="width: 30%;">
-  <img src="./src/assets/images/login.gif" alt="Login Page GIF" style="width: 50%;">
 </div>
 
 The Login Page allows registered users to sign in to their accounts.
@@ -28,7 +27,7 @@ The Login Page allows registered users to sign in to their accounts.
 
 <div style="display: flex;">
   <img src="./src/assets/images/register.png" alt="Register Page Screenshot" style="width: 30%;">
-  <img src="./src/assets/images/register.gif" alt="Register Page GIF" style="width: 50%;">
+  <img src="./src/assets/images/register.gif" alt="Register Page GIF" style="width: 60%;">
 </div>
 
 New users can register for an account on this page.
