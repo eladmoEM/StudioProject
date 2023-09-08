@@ -27,7 +27,7 @@ The Login Page allows registered users to sign in to their accounts.
 
 <div style="display: flex;">
   <img src="./src/assets/images/register.png" alt="Register Page Screenshot" style="width: 30%;">
-  <img src="./src/assets/images/register.gif" alt="Register Page GIF" style="width: 60%;">
+  <img src="./src/assets/images/register.gif" alt="Register Page GIF" style="width: 80%;">
 </div>
 
 New users can register for an account on this page.
