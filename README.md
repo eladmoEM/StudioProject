@@ -15,7 +15,7 @@ A hybrid application designed for managing and engaging with dancing studios.
 
 ## Client Side
 
-### Login Page
+### Login Page Check
 
 ![Login Page Screenshot](./src/assets/images/login.png)
 
