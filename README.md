@@ -23,13 +23,13 @@ The Login Page allows registered users to sign in to their accounts.
 
 ### Register Page
 
-![Register Page Screenshot](./images/register_page.jpg)
+![Register Page Screenshot](./src/assets/images/register.gif)
 
 New users can register for an account on this page.
 
 ### Home Page
 
-![Home Page Screenshot](./images/home_page.jpg)
+![Home Page Screenshot](./src/assets/images/home.gif)
 
 This is the landing page once the user logs in. Here you can find all the services offered.
 
@@ -39,18 +39,18 @@ This is the landing page once the user logs in. Here you can find all the servic
 
 ### Manager Page
 
-![Manager Page Screenshot](./images/manager_page.jpg)
+![Manager Page Screenshot](./src/assets/images/manager.gif)
 
 This is the main dashboard where managers can monitor and control all activities related to the dancing studio.
 
 ### Customer Management
 
-![Customer Management Screenshot](./images/customer_management.jpg)
+![Customer Management Screenshot](./src/assets/images/customer_managment.gif)
 
 Managers can manage all customer-related data here.
 
 ### Courses Management
 
-![Courses Management Screenshot](./images/courses_management.jpg)
+![Courses Management Screenshot](./src/assets/images/course_managment.gif)
 
 All course-related data can be managed here.

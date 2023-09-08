@@ -69,7 +69,7 @@ export class RegisterPage {
   }
 
   goBack() {
-    this.router.navigate(['/login', { totalSum: this.totalSum }]);
+    this.router.navigate(['/login']);
   }
 
   onTermsChanged(event: Event) {
