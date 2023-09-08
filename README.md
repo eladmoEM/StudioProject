@@ -9,7 +9,7 @@ A hybrid application designed for managing and engaging with dancing studios.
 - [Manager Side](#manager-side)
   - [Manager Page](#manager-page)
   - [Customer Management](#customer-management)
-  - [Courses Management](#courses-management)
+  - [Courses Management](#courses-management
 
 ---
 
