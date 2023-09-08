@@ -48,7 +48,7 @@ This is the landing page once the user logs in. Here you can find all the servic
 ### Manager Page
 
 <div style="display: flex;">
-  <img src="./src/assets/images/manager.png" alt="Manager Page Screenshot" style="width: 50%;">
+  <img src="./src/assets/images/manager.png" alt="Manager Page Screenshot" style="width: 30%;">
   <img src="./src/assets/images/manager.gif" alt="Manager Page GIF" style="width: 75%;">
 </div>
 
