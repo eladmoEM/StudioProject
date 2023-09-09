@@ -84,25 +84,19 @@
         <ion-label dir="rtl" slot="end">ת.ז. של הקורס:</ion-label>
         <ion-input [(ngModel)]="customer.courseID" type="text" dir="rtl"></ion-input>
       </ion-item> -->
-      <div style="margin-top: 20%;" class="buttons">
+
+      <div class="buttons">
         <ion-button color="success" size="full" (click)="saveChanges()">שמירה</ion-button>
         <ion-button size="full" (click)="cancel()">ביטול</ion-button>
+        <ion-button size="full" color="danger" (click)="confirmDelete()">מחק לקוח</ion-button>
       </div>
     
-
-      <div style="margin-top: 10%;" class="danger-zone">
-        <ion-button size="full" color="danger" (click)="confirmDelete()">מחק לקוח</ion-button>
-
-      </div>
-     
-      
       
       </ion-card-content>
-      <br>  <br>
+
       <div class="flex-center">
         <ion-button style="font-size: 18px;" color="success" (click)="toggleEditMode()" *ngIf="!editMode">ערוך לקוח</ion-button>
       </div>
-      <br>  <br>
       <div style="display: flex; justify-content: center;">
         <ion-button style="width: 100%; font-size: 18px;"  size="large" (click)="closeModal()" *ngIf="!editMode">סגירה</ion-button>
       </div>
