@@ -29,7 +29,7 @@ A hybrid application designed for managing and engaging with dancing studios.
 
 <div style="display: flex;">
   <img src="./src/assets/images/home.png" alt="HomePage Screenshot" style="width: 30%;">
-  <img src="./src/assets/images/home.gif" alt="HomePage Screenshot GIF" style="width:30%">
+  <img src="./src/assets/images/home.gif" alt="HomePage Screenshot GIF" style="width:35%">
 
 </div>
 
