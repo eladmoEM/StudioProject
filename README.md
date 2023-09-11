@@ -29,7 +29,7 @@ A hybrid application designed for managing and engaging with dancing studios.
 
 <div style="display: flex;">
   <img src="./src/assets/images/register.png" alt="Register Page Screenshot" style="width: 200px">
-  <img src="./src/assets/images/ezgif.com-gif-maker.gif" alt="Register Page GIF" style="width: 400px;">
+  <img src="./src/assets/images/ezgif.com-gif-maker.gif" alt="Register Page GIF" style="width: 200px;">
 </div>
 
 New users can register their children on this screen.
