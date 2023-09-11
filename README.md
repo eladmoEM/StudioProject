@@ -42,8 +42,6 @@ This is the landing page once the user logs in. Here you can find all the servic
 </div>
 
 
----
-
 ## Manager Side
 
 ### Manager Page
