@@ -16,11 +16,11 @@ A hybrid application designed for managing and engaging with dancing studios.
 ## Client Side
 
 ### Login Page
-
+  Comparison between Android and IOS
 <div style="display: flex;">
   <img src="./src/assets/images/android.png" alt="Login Page Screenshot Android" style="width: 30%;">
   <img src="./src/assets/images/iphone.png" alt="Login Page Screenshot IOS" style="width: 34%;">
-  Comparison between Android and IOS
+
 </div>
 
 
