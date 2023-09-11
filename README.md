@@ -45,26 +45,26 @@ This is the landing page once the user logs in. Here you can find all the servic
 ## Manager Side
 
 ### Manager Page
-
+This is the main dashboard where managers can monitor and control all activities related to his studio.
 <div style="display: flex;">
   <img src="./src/assets/images/manager.png" alt="Manager Page Screenshot" style="width: 30%;">
   <img src="./src/assets/images/manager.gif" alt="Manager Page GIF" style="width: 75%;">
 </div>
 
-This is the main dashboard where managers can monitor and control all activities related to his studio.
+
 
 ### Customer Management
-
+Managers can manage all customer-related data here
 <div style="display: flex;">
   <img src="./src/assets/images/customer_managment.gif" alt="Customer Management GIF" style="width: 75%;">
 </div>
 
-Managers can manage all customer-related data here
+
 
 ### Courses Management
-
+All course-related data can be managed here.
 <div style="display: flex;">
   <img src="./src/assets/images/course_managment.gif" alt="Courses Management GIF" style="width: 75%;">
 </div>
 
-All course-related data can be managed here.
+
