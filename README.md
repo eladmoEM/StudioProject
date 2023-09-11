@@ -35,13 +35,12 @@ New users can register their children on this screen.
 
 
 ### Home Page
-
+This is the landing page once the user logs in. Here you can find all the services offered.
 <div style="display: flex;">
   <img src="./src/assets/images/home.png" alt="Home Page Screenshot" style="width: 30%;">
   <img src="./src/assets/images/home.gif" alt="Home Page GIF" style="width: 75%;">
 </div>
 
-This is the landing page once the user logs in. Here you can find all the services offered.
 
 ---
 
